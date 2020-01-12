@@ -14,19 +14,12 @@ typedef long long ll;
 void solve() {
   int h, m;
   cin >> h >> m;
-  h = 24 - h - 1;
-  m = 60 - m;
-  int ans = m + (h * 60);
-  cout << ans << '\n';
+  cout << 60 - m + (23 - h) * 60 << '\n';
 }
 
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
-#ifndef ONLINE_JUDGE
-  freopen("in.txt", "r", stdin);
-  // freopen("out.txt", "w", stdout);
-#endif
   int tc;
   cin >> tc;
   while (tc--) solve();
