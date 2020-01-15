@@ -6,39 +6,51 @@
 #include <io.h>
 using namespace std;
 
+inline bool exist(const std::string& name) {
+  return (access(name.c_str(), F_OK) != -1);
+}
+
 int main() {
-  string dir;
-  cout << "Enter CF Contest ID: ";
-  cin >> dir;  // codeforces contest id
+  string contestID, problemID = "a", s;
+  cout << "CF Contest ID: ";
+  cin >> contestID;  // codeforces contest id
   cout.flush();
-  mkdir(dir.c_str());
-  string file = dir + "/";
-  system("code .");
-  system("exit");
-  string s = "code -r " + dir + "/";
-  string str = "start chrome https://codeforces.com/contest/" + dir;
-  string str1 = str + "/submit/";
-  string link, submit, fname;
-  string A = "A";
-
-  do {
-    std::transform(A.begin(), A.end(), A.begin(), ::toupper);
-    if (A == "Q") break;
-
-    link = str + "/problem/" + A;
-    submit = str1 + A;
-    fname = s + A + ".cpp";
-    file.append(A);
-    file.append(".cpp");
-    ofstream write(file.c_str());
-    system(fname.c_str());  // open file
-    file = dir + "/";
-    system(submit.c_str());  // open submit page
-    system(link.c_str());    // open problem statement page
+  s = "cf race " + contestID;
+  system(s.c_str());
+  s = contestID + "/" + problemID;
+  chdir(s.c_str());
+  s = problemID + ".cpp";
+  if (!exist(s)) system("cf gen");
+  s = "code -r " + problemID + ".cpp ";
+  system(s.c_str());
+  cout << "Command / Problem ID: " << endl;
+  while (cin >> problemID) {
+    if (problemID == "t") {
+      system("cf test");
+    } else if (problemID == "s") {
+      system("cf submit");
+    } else if (problemID == "q") {
+      system("exit");
+      exit(1);
+    } else if (problemID == "watch") {
+      system("cf watch");
+    } else if (problemID == "ls") {
+      system("cf list");
+    } else if (problemID == "stand") {
+      system("cf stand");
+    } else {
+      s = "../" + problemID + "/";
+      chdir(s.c_str());
+      s = problemID + ".cpp";
+      if (!exist(s)) system("cf gen");
+      s = "cf open " + contestID + " " + problemID;
+      system(s.c_str());
+      s = "code -r " + problemID + ".cpp";
+      system(s.c_str());
+    }
     system("exit");
-    cout << "Enter Problem Code: " << endl;
-  } while (cin >> A);
-
+    cout << "Command or Problem ID: " << endl;
+  }
   system("exit");
   exit(1);
   return 0;
