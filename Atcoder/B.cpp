@@ -15,10 +15,10 @@ int main() {
   cin.tie(0);
   int n, m;
   cin >> n >> m;
-  string a = "", b = "";
-  for (int i = 0; i < n; i++) a += (char)m;
-  for (int i = 0; i < m; i++) b += (char)n;
-  cout << (a <= b ? a : b) << "\n";
-
-  return 0;
+  if (n > m) {
+    for (int i = 0; i < n; i++) cout << m;
+  } else {
+    for (int i = 0; i < m; i++) cout << n;
+  }
+  return cout << "\n", 0;
 }
