@@ -10,8 +10,6 @@ typedef long long ll;
 #define all(a) a.begin(), a.end()
 #define w(a) std::cerr << #a << " : " << (a) << "\n";
 
-unordered_map<ll, int> mp, mp2;
-
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
@@ -20,6 +18,8 @@ int main() {
   vector<int> a(n + 2, 0);
   ll sm = 0LL, s = 0LL;
   for (int i = 0; i < n; i++) cin >> a[i], sm += a[i];
+
+  unordered_map<ll, int> mp, mp2;
   mp[a[0]]++;
   for (int i = 1; i < n; i++) mp2[a[i]]++;
 

@@ -15,6 +15,7 @@ int main() {
   cin.tie(0);
   int n;
   cin >> n;
+
   if (n < 10)
     cout << 1 << "\n";
   else {
@@ -24,6 +25,7 @@ int main() {
       num /= 10;
       dgt++;
     }
+
     if (fst == 9) {
       int year = 1;
       for (int i = 0; i < dgt; i++) year *= 10;

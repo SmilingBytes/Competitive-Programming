@@ -17,16 +17,16 @@ int main() {
   cin >> n >> k;
   vector<int> a(n, 0);
   for (int i = 0; i < n; i++) cin >> a[i];
+
   ll sm = 0LL, total = 0LL;
   for (int i = 0; i < k; i++) sm += a[i];
-  int j = 0;
+
   total = sm;
-  for (int i = k; i < n; i++, j++) {
+  for (int i = k, j = 0; i < n; i++, j++) {
     sm = sm + a[i] - a[j];
     total += sm;
   }
-  double ans = (double)total / (n - k + 1);
-  cout << fixed << setprecision(10) << ans << "\n";
 
+  cout << fixed << setprecision(10) << (double)total / (n - k + 1) << "\n";
   return 0;
 }
